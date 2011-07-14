@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+require 'net/smtp'
+
+message = <<-END_OF_MESSAGE
+From: francis <francis@example.com>
+To: bill <bill@example.com>
+Subject: zombies
+Date: Thu, 14 Jul 2011 15:16:43 +1000
+Message-Id: <unique.message.id.string@example.com>
+
+You know what I don't hate? I don't hate vests.
+END_OF_MESSAGE
+
+Net::SMTP.start('localhost', 2525) do |smtp|
+  smtp.send_message(message,'francis@example.com','bill@example.com')
+end
