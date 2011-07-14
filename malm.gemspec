@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
     "lib/malm_smtp_server.rb",
     "lib/malm_web.rb",
     "lib/message_db.rb",
+    "malm.gemspec",
     "spec/help_spec.rb",
     "spec/spec_helper.rb"
   ]
