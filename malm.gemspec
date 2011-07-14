@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{madlep}]
   s.date = %q{2011-07-14}
-  s.description = %q{TODO: SMTP server with web interface for easy local development. Sets up a little mail server that you can send messages to, and provides a web front end to let you see what your app did.}
+  s.description = %q{SMTP server with web interface for easy local development. Sets up a little mail server that you can send messages to, and provides a web front end to let you see what your app did.}
   s.email = %q{julian.doherty.ml@gmail.com}
   s.executables = [%q{malm}]
   s.extra_rdoc_files = [
@@ -36,7 +36,7 @@ Gem::Specification.new do |s|
   s.licenses = [%q{MIT}]
   s.require_paths = [%q{lib}]
   s.rubygems_version = %q{1.8.5}
-  s.summary = %q{TODO: Easy SMTP server for local development}
+  s.summary = %q{Easy SMTP server for local development}
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
