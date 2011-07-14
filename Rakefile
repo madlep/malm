@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "malm"
   gem.homepage = "http://github.com/madlep/malm"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: Easy SMTP server for local development}
-  gem.description = %Q{TODO: SMTP server with web interface for easy local development. Sets up a little mail server that you can send messages to, and provides a web front end to let you see what your app did.}
+  gem.summary = %Q{Easy SMTP server for local development}
+  gem.description = %Q{SMTP server with web interface for easy local development. Sets up a little mail server that you can send messages to, and provides a web front end to let you see what your app did.}
   gem.email = "julian.doherty.ml@gmail.com"
   gem.authors = ["madlep"]
   # dependencies defined in Gemfile
