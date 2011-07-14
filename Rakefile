@@ -11,6 +11,9 @@ rescue Bundler::BundlerError => e
 end
 require 'rake'
 
+# psyck vs syck mess work around - see https://github.com/tenderlove/psych/issues/13
+YAML::ENGINE.yamler = 'syck'
+
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
