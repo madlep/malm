@@ -14,6 +14,7 @@ class MalmWeb < Sinatra::Base
   
   get "/messages/:id" do
     content_type :json
-    settings.message_db.find(params[:id]).to_json
+    id = Integer(params[:id])
+    settings.message_db.find(id).to_json
   end
 end
