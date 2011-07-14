@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{malm}
-  s.version = "0.0.1"
+  s.version = "0.0.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{madlep}]
@@ -29,6 +29,7 @@ Gem::Specification.new do |s|
     "lib/malm_web.rb",
     "lib/message_db.rb",
     "malm.gemspec",
+    "spec/bin/malm_test_message",
     "spec/help_spec.rb",
     "spec/spec_helper.rb"
   ]
