@@ -22,19 +22,21 @@ class MalmSMTPServer < GServer
     puts "Connected"
     io.print "220 hello\r\n"
     loop do
-      if IO.select([io], nil, nil, 0.1)
-        data = io.readpartial(4096)
-        puts ">>" + data
-        ok, op = process_line(data, session)
-        break unless ok
-        puts "<<" + op
-        io.print op
-      end
+      data = io.gets
+      puts ">>" + data
+      ok, op = process_line(data, session)
+      puts "<<" + op 
+      io.print op               
+      break unless ok
       break if io.closed?
     end
-    db_insert(session)
-    io.print "221 bye\r\n"
-    io.close
+    begin
+      io.close
+      db_insert(session)
+    rescue => e
+      log "something screwed up..."
+      log e.backtrace
+    end
   end
 
   def process_line(line, session)
@@ -47,7 +49,7 @@ class MalmSMTPServer < GServer
     elsif (line =~ /^(HELO|EHLO)/)
       return true, "250 and..?\r\n"
     elsif (line =~ /^QUIT/)
-      return false, "bye\r\n"
+      return false, "221 bye\r\n"
     elsif (line =~ /^MAIL FROM\:/)
       session.mail_from = (/^MAIL FROM\:<(.+)>.*$/).match(line)[1]
       return true, "250 OK\r\n"
@@ -65,7 +67,8 @@ class MalmSMTPServer < GServer
   def db_insert(session)
     subject_regex = /^Subject\: (.+)$/
 
-    subject = subject_regex.match(session.email_body)[1] || ""
+    subject_match = subject_regex.match(session.email_body)
+    subject = subject_match ? subject_match[1] : ""
     subject.strip!
     
     message = {:subject => subject, :from => session.mail_from, :to => session.rcpt_to, :body => session.email_body}
@@ -86,4 +89,5 @@ class MalmSMTPServer < GServer
     @mail_log_fd.close if @mail_log_fd
     super
   end
+  
 end
