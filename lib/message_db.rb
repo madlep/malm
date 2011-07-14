@@ -10,6 +10,7 @@ class MessageDb
   
   def create(message)
     @sempahore.synchronize do
+      message[:id] = @message_db.size
       @message_db << message
       @message_db.size
     end
@@ -18,6 +19,12 @@ class MessageDb
   def find_all
     @sempahore.synchronize do
       @message_db.dup
+    end
+  end
+  
+  def find(id)
+    @sempahore.synchronize do
+      @message_db[id]
     end
   end
 
