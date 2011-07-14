@@ -1,0 +1,52 @@
+#!/usr/bin/env ruby
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), "..", "lib"))
+require "malm_smtp_server"
+require "malm_web"
+require "clamp"
+require 'message_db'
+
+class MalmCommand < Clamp::Command
+  option ["-l", "--log"], "FILE", "file to log mail messages to (optional)"
+
+  option ["-p", "--stmpport"], "STMP PORT", "SMTP port to listen on", :default => 2525 do |port|
+    Integer(port)
+  end
+  
+  option ["-w", "--webport"], "WEB PORT", "Port for client web app to view malmed messages", :default => 4567 do |port|
+    Integer(port)
+  end
+  
+  def execute
+    db = create_db
+    smtp = run_smtp!(db)
+    web = run_web!(db)
+  end
+  
+  private
+  def create_db
+    MessageDb.new
+  end
+  
+  def run_smtp!(db)
+    smtp_server = MalmSMTPServer.new(stmpport)
+    smtp_server.mail_log = log
+    smtp_server.message_db = db
+    
+    begin
+      smtp_server.start
+    rescue Errno::EACCES
+      STDERR.puts("Don't have permission to start SMTP server on port #{stmpport}. Maybe run with sudo?")
+      exit 1
+    end
+    smtp_server
+  end
+  
+  def run_web!(db)
+    MalmWeb.set :port, webport
+    MalmWeb.set :message_db, db
+    MalmWeb.run!
+  end
+end
+
+MalmCommand.run
+
