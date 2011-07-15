@@ -24,7 +24,7 @@ class MessageDb
   
   def find(id)
     @sempahore.synchronize do
-      @message_db[id]
+      @message_db[id].dup
     end
   end
 

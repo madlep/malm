@@ -13,7 +13,12 @@ class MalmWeb < Sinatra::Base
   
   get "/messages.json" do
     content_type :json
-    settings.message_db.find_all.to_json
+    settings.message_db.find_all.map{|m|
+      m = m.dup
+      m.delete(:body)
+      m[:body_urls] = {:html => url("/messages/#{m[:id]}/body.html"), :text => url("/messages/#{m[:id]}/body.text")}
+      m
+    }.to_json
   end
   
   get "/messages/:id.json" do
