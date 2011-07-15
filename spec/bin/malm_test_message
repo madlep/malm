@@ -2,16 +2,213 @@
 
 require 'net/smtp'
 
-message = <<-END_OF_MESSAGE
-From: francis <francis@example.com>
-To: bill <bill@example.com>
-Subject: zombies
-Date: Thu, 14 Jul 2011 15:16:43 +1000
-Message-Id: <unique.message.id.string@example.com>
+message1 = <<-END_OF_MESSAGE
+Delivered-To: julian.doherty.ml@gmail.com
+Received: by 10.205.65.11 with SMTP id xk11cs235015bkb;
+        Fri, 8 Jul 2011 04:13:29 -0700 (PDT)
+Received: by 10.236.180.38 with SMTP id i26mr2405055yhm.205.1310123608196;
+        Fri, 08 Jul 2011 04:13:28 -0700 (PDT)
+Return-Path: <qybsao@galeriestills.nl>
+Received: from kiver.site5.com (kiver.site5.com [174.132.150.130])
+        by mx.google.com with ESMTPS id g63si36654835yhn.48.2011.07.08.04.13.26
+        (version=TLSv1/SSLv3 cipher=OTHER);
+        Fri, 08 Jul 2011 04:13:26 -0700 (PDT)
+Received-SPF: neutral (google.com: 174.132.150.130 is neither permitted nor denied by best guess record for domain of qybsao@galeriestills.nl) client-ip=174.132.150.130;
+Authentication-Results: mx.google.com; spf=neutral (google.com: 174.132.150.130 is neither permitted nor denied by best guess record for domain of qybsao@galeriestills.nl) smtp.mail=qybsao@galeriestills.nl
+Received: from akf90.internetdsl.tpnet.pl ([83.17.9.90] helo=galeriestills.nl)
+	by kiver.site5.com with esmtp (Exim 4.69)
+	(envelope-from <qybsao@galeriestills.nl>)
+	id 1Qf8zt-0007aO-I9
+	for madlep@ubercharged.net; Fri, 08 Jul 2011 06:13:26 -0500
+Message-ID: <2ac901cc3d5f$2983c8b0$3b29bc19@galeriestills.nl>
+From: "Precision Crafted and Low Priced Watches" <qybsao@galeriestills.nl>
+To: <madlep@ubercharged.net>
+Subject: Casual Watches at Low Prices
+Date: Fri, 8 Jul 2011 13:11:17 +0200
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0023_28_01CC3D6E.A8D734EC"
+X-Priority: 3
+X-MSMail-Priority: Normal
+X-Mailer: Microsoft Outlook Express 6.00.2900.2180
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2900.3350
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - kiver.site5.com
+X-AntiAbuse: Original Domain - ubercharged.net
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - galeriestills.nl
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 
-You know what I don't hate? I don't hate vests.
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_0023_28_01CC3D6E.A8D734EC
+Content-Type: text/plain;
+	charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+ Reward Yourself with a New Toy  Order Now
+
+------=_NextPart_000_0023_28_01CC3D6E.A8D734EC
+Content-Type: text/html;
+	charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD>
+<META http-equiv=3DContent-Type content=3D"text/html; charset=3Diso-8859=
+-1">
+<META content=3D"MSHTML 6.00.6000.16788" name=3DGENERATOR>
+<STYLE></STYLE>
+</HEAD>
+<BODY bgColor=3D#ffffff>
+<div style=3D"font-family: Tahoma;color: rgb(255, 3, 3);font-size: large=
+r;"><strong>Reward Yourself with a New Toy</strong></div>
+<div>&nbsp;</div>
+<div style=3D"font-family: Tahoma;font-size: larger;"><strong><a href=3D=
+"http://poundtax.ru/">Order Now</a></strong><span style=3D"font-family: =
+Tahoma;"> </span></div>
+</BODY></HTML>
+
+------=_NextPart_000_0023_28_01CC3D6E.A8D734EC--
+END_OF_MESSAGE
+
+message2 = <<-END_OF_MESSAGE
+Received: from mail01.is.devint.lpo (10.61.45.25) by lpozpwexc02.lpint.net
+ (10.61.38.9) with Microsoft SMTP Server id 8.2.176.0; Fri, 15 Jul 2011
+ 09:18:52 +1000
+Received: from app01.groups.devint.lpo (app01.groups.devint.lpo [10.61.42.91])
+	by mail01.is.devint.lpo (Postfix) with ESMTP id 1795E249EC	for
+ <madlep0715@devint.lpo>; Thu, 14 Jul 2011 23:18:53 +0000 (UTC)
+Received: from localhost (localhost.localdomain [127.0.0.1])	by
+ app01.groups.devint.lpo (Postfix) with ESMTP id 9F77C2E73F	for
+ <madlep0715@devint.lpo>; Thu, 14 Jul 2011 23:18:52 +0000 (UTC)
+From: Registration <registration@lonelyplanet.com.au>
+To: "madlep0715@devint.lpo" <madlep0715@devint.lpo>
+Content-Class: urn:content-classes:message
+Date: Fri, 15 Jul 2011 09:18:49 +1000
+Subject: Welcome to Lonely Planet
+Thread-Topic: Welcome to Lonely Planet
+Thread-Index: AcxCfGU39s1C5HHOQ/2O1Ro4yrIL6g==
+Message-ID: <4e1f79598aac0_508010ee224@app01.groups.devint.lpo.tmail>
+X-MS-Exchange-Organization-AuthAs: Anonymous
+X-MS-Exchange-Organization-AuthSource: lpozpwexc02.lpint.net
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+Content-Type: multipart/alternative;
+	boundary="_000_4e1f79598aac0508010ee224app01groupsdevintlpotmail_"
+MIME-Version: 1.0
+
+--_000_4e1f79598aac0508010ee224app01groupsdevintlpotmail_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+
+W2h0dHA6Ly9zdGF0aWMuZGV2aW50Lmxwby9zdGF0aWMtdWkvaW1hZ2VzL2xwLWxvZ28tZW1haWwu
+Z2lmXTxodHRwOi8vd3d3LmRldmludC5scG8+DQoNCkRlYXIgbWFkbGVwMDcxNSwNCg0KV2VsY29t
+ZSEgWW91J3JlIG5lYXJseSB0aGVyZS4NCg0KV2UgcmVjb21tZW5kIHJlYWRpbmcgb3VyIENvbW11
+bml0eSBHdWlkZWxpbmVzPGh0dHA6Ly93d3cubG9uZWx5cGxhbmV0LmNvbS9jb21tdW5pdHktZ3Vp
+ZGVsaW5lcz4gYW5kIENvbW11bml0eSBGQVFzPGh0dHA6Ly9sb25lbHlwbGFuZXQuemVuZGVzay5j
+b20vZm9ydW1zLzkwMDM3LXRob3JuLXRyZWUtc3VwcG9ydD4gYmVmb3JlIHlvdSBnZXQgc3RhcnRl
+ZC4NCg0KQXMgYSBtZW1iZXIsIHlvdSdsbCBiZSBhYmxlIHRvIGFzayBhbmQgb2ZmZXIgdHJhdmVs
+IGFkdmljZSBvbiBvdXIgVGhvcm4gVHJlZSBmb3J1bSwgY3JlYXRlIHJldmlld3Mgb2YgdGhpbmdz
+IHRvIGRvIGFuZCBzZWUgYXJvdW5kIG91ciBkZXN0aW5hdGlvbiBzZWN0aW9ucywgYW5kIGNvbW1l
+bnQgb24gb3VyIGFydGljbGVzIGFuZCBibG9ncy4gWW91J2xsIGhhdmUgdGhlIGNoYW5jZSB0byBl
+YXJuIHlvdXIgdHJhdmVsbGVyIHN0cmlwZXMsIHRhbGsgdG8gTG9uZWx5IFBsYW5ldCBzdGFmZiBh
+bmQgYXV0aG9ycyBhbmQgc2hhcmUgeW91ciBpZGVhcyBhYm91dCB0aGUgc3R1ZmYgd2UgbWFrZSBm
+b3IgeW91Lg0KDQpKdXN0IGNvbmZpcm0geW91ciBhY2NvdW50IGJ5IGNsaWNraW5nIHRoZSBsaW5r
+IGJlbG93ICh5b3UgY2FuIGFsc28gY3V0IGFuZCBwYXN0ZSB0aGUgbGluayBpbnRvIHlvdXIgYnJv
+d3NlciBkaXJlY3RseSk6DQoNCmh0dHA6Ly93d3cuZGV2aW50Lmxwby9tZW1iZXJzL3BlcnNvbkFj
+dGl2YXRpb24/cGlkPTkzMjE4NyZhaWQ9YjBkYzMwNDZiMzY4YTU3ODgwNTg1NjE1YTAyODNkMmQm
+ZW1haWw9bWFkbGVwMDcxNUBkZXZpbnQubHBvDQoNCk9uY2UgeW91ciBhY2NvdW50IGlzIGFjdGl2
+YXRlZCB5b3UncmUgZWxpZ2libGUgZm9yIDE1JSBvZmYgeW91ciBuZXh0IGJvb2sgcHVyY2hhc2Ug
+dGhyb3VnaCB0aGUgTG9uZWx5IFBsYW5ldCBvbmxpbmUgc2hvcC4gSnVzdCBlbnRlciB0aGlzIHBy
+b21vIGNvZGUgKExQTUVNMTUpIGF0IHRoZSBjaGVja291dCBhbmQgeW91J2xsIGJlIGluIGJ1c2lu
+ZXNzLiAoTm90IHZhbGlkIHdpdGggb3RoZXIgcHJvbW90aW9ucywgYW5kIG90aGVyIGNvbmRpdGlv
+bnMgbWF5IGFwcGx5LikNCg0KV2UncmUgcHJvdWQgdG8gaGF2ZSB0aGUgbW9zdCBkaXZlcnNlLCBr
+bm93bGVkZ2VhYmxlIGFuZCBwYXNzaW9uYXRlIHRyYXZlbGVyIGNvbW11bml0eSBvbiB0aGUgcGxh
+bmV0IOKAlCB0aGFuayB5b3UgZm9yIGJlaW5nIGEgcGFydCBvZiBpdCENCg0KVGhlIExvbmVseSBQ
+bGFuZXQgdGVhbQ0KDQpQLlMuIElmIHlvdSB3YW50IHRvIGdldCBpbiB0b3VjaCB3aXRoIHRoZSBj
+b21tdW5pdHkgdGVhbSwgZW1haWwgY29tbXVuaXR5QGxvbmVseXBsYW5ldC5jb208bWFpbHRvOmNv
+bW11bml0eUBsb25lbHlwbGFuZXQuY29tPg0KDQpUZXh0ICYgSW1hZ2VzIMKpIExvbmVseSBQbGFu
+ZXQgMjAxMQ0KDQpUaGlzIGVtYWlsLCBpbmNsdWRpbmcgYXR0YWNobWVudHMsIGlzIGludGVuZGVk
+IG9ubHkgZm9yIHRoZSBhZGRyZXNzZWUgYW5kIG1heSBiZSBjb25maWRlbnRpYWwsIHByaXZpbGVn
+ZWQgYW5kIHN1YmplY3QgdG8gY29weXJpZ2h0LiBJZiB5b3UgaGF2ZSByZWNlaXZlZCB0aGlzIGVt
+YWlsIGluIGVycm9yLCBwbGVhc2UgYWR2aXNlIHRoZSBzZW5kZXIgYW5kIGRlbGV0ZSBpdC4gSWYg
+eW91IGFyZSBub3QgdGhlIGludGVuZGVkIHJlY2lwaWVudCBvZiB0aGlzIGVtYWlsLCB5b3UgbXVz
+dCBub3QgY29tbXVuaWNhdGUgdG8gb3RoZXJzIGNvbnRlbnQgdGhhdCBpcyBjb25maWRlbnRpYWwg
+b3Igc3ViamVjdCB0byBjb3B5cmlnaHQsIHVubGVzcyB5b3UgaGF2ZSB0aGUgY29uc2VudCBvZiB0
+aGUgY29udGVudCBvd25lci4NCg0K
+
+--_000_4e1f79598aac0508010ee224app01groupsdevintlpotmail_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
+
+PGh0bWw+DQogICAgPGhlYWQ+DQogICAgPHRpdGxlPkxvbmVseSBQbGFuZXQ6IEFjdGl2YXRlIHlv
+dXIgYWNjb3VudDwvdGl0bGU+DQogICAgPC9oZWFkPg0KDQogICAgPGJvZHk+DQogICAgICAgIDx0
+YWJsZSBib3JkZXI9IjAiIGNlbGxwYWRkaW5nPSIwIiBjZWxsc3BhY2luZz0iMCIgd2lkdGg9IjYw
+MyI+DQogICAgICAgICAgICA8dHI+DQogICAgICAgICAgICAgICAgPHRkIGJnY29sb3I9IiMwYTRm
+OWMiIHN0eWxlPSJiYWNrZ3JvdW5kOiAjMGE0ZjljOyBwYWRkaW5nOjE1cHggMjBweCI+PGEgaHJl
+Zj0iaHR0cDovL3d3dy5kZXZpbnQubHBvIj48aW1nIHNyYz0iaHR0cDovL3N0YXRpYy5kZXZpbnQu
+bHBvL3N0YXRpYy11aS9pbWFnZXMvbHAtbG9nby1lbWFpbC5naWYiIGFsdD0iTG9uZWx5IFBsYW5l
+dCBQdWJsaWNhdGlvbnMiIGJvcmRlcj0iMCI+PC9hPjwvdGQ+DQogICAgICAgICAgICA8L3RyPg0K
+ICAgICAgICAgICAgPHRyPg0KICAgICAgICAgICAgICAgIDx0ZCBzdHlsZT0idmVydGljYWwtYWxp
+Z246IHRvcDsgYmFja2dyb3VuZDogI2ZmZjsgZm9udC1mYW1pbHk6IFZlcmRhbmEsIEFyaWFsLCBI
+ZWx2ZXRpY2EsIHNhbnMtc2VyaWY7ICBmb250LXNpemU6IDE0cHg7IGxpbmUtaGVpZ2h0OiAxLjNl
+bTsgcGFkZGluZzogMjBweDsiPg0KICAgICAgICAgICAgICAgICAgICA8cD5EZWFyIG1hZGxlcDA3
+MTUsPC9wPg0KDQoJCQkJCTxwPldlbGNvbWUhIFlvdSdyZSBuZWFybHkgdGhlcmUuDQoNCgkJCQkJ
+PHA+V2UgcmVjb21tZW5kIHJlYWRpbmcgb3VyIDxhIGhyZWY9Imh0dHA6Ly93d3cubG9uZWx5cGxh
+bmV0LmNvbS9jb21tdW5pdHktZ3VpZGVsaW5lcyI+Q29tbXVuaXR5IEd1aWRlbGluZXM8L2E+IGFu
+ZCA8YSBocmVmPSJodHRwOi8vbG9uZWx5cGxhbmV0LnplbmRlc2suY29tL2ZvcnVtcy85MDAzNy10
+aG9ybi10cmVlLXN1cHBvcnQiPkNvbW11bml0eSBGQVFzPC9hPiBiZWZvcmUgeW91IGdldCBzdGFy
+dGVkLjwvcD4NCg0KCQkJCQk8cD5BcyBhIG1lbWJlciwgeW91J2xsIGJlIGFibGUgdG8gYXNrIGFu
+ZCBvZmZlciB0cmF2ZWwgYWR2aWNlIG9uIG91ciBUaG9ybiBUcmVlIGZvcnVtLCBjcmVhdGUgcmV2
+aWV3cyBvZiB0aGluZ3MgdG8gZG8gYW5kIHNlZSBhcm91bmQgb3VyIGRlc3RpbmF0aW9uIHNlY3Rp
+b25zLCBhbmQgY29tbWVudCBvbiBvdXIgYXJ0aWNsZXMgYW5kIGJsb2dzLiBZb3UnbGwgaGF2ZSB0
+aGUgY2hhbmNlIHRvIGVhcm4geW91ciB0cmF2ZWxsZXIgc3RyaXBlcywgdGFsayB0byBMb25lbHkg
+UGxhbmV0IHN0YWZmIGFuZCBhdXRob3JzIGFuZCBzaGFyZSB5b3VyIGlkZWFzIGFib3V0IHRoZSBz
+dHVmZiB3ZSBtYWtlIGZvciB5b3UuPC9wPg0KDQoJCQkJCTxwPkp1c3QgY29uZmlybSB5b3VyIGFj
+Y291bnQgYnkgY2xpY2tpbmcgdGhlIGxpbmsgYmVsb3cgKHlvdSBjYW4gYWxzbyBjdXQgYW5kIHBh
+c3RlIHRoZSBsaW5rIGludG8geW91ciBicm93c2VyIGRpcmVjdGx5KTo8L3A+DQoNCgkJCQkJPHA+
+PGEgaHJlZj0iaHR0cDovL3d3dy5kZXZpbnQubHBvL21lbWJlcnMvcGVyc29uQWN0aXZhdGlvbj9w
+aWQ9OTMyMTg3JmFpZD1iMGRjMzA0NmIzNjhhNTc4ODA1ODU2MTVhMDI4M2QyZCZlbWFpbD1tYWRs
+ZXAwNzE1QGRldmludC5scG8iIHN0eWxlPSJjb2xvcjojMGY4YWQwIj5odHRwOi8vd3d3LmRldmlu
+dC5scG8vbWVtYmVycy9wZXJzb25BY3RpdmF0aW9uP3BpZD05MzIxODcmYWlkPWIwZGMzMDQ2YjM2
+OGE1Nzg4MDU4NTYxNWEwMjgzZDJkJmVtYWlsPW1hZGxlcDA3MTVAZGV2aW50LmxwbzwvYT48L3A+
+DQoNCgkJCQkJPHA+T25jZSB5b3VyIGFjY291bnQgaXMgYWN0aXZhdGVkIHlvdSdyZSBlbGlnaWJs
+ZSBmb3IgMTUlIG9mZiB5b3VyIG5leHQgYm9vayBwdXJjaGFzZSB0aHJvdWdoIHRoZSBMb25lbHkg
+UGxhbmV0IG9ubGluZSBzaG9wLiBKdXN0IGVudGVyIHRoaXMgcHJvbW8gY29kZSAoTFBNRU0xNSkg
+YXQgdGhlIGNoZWNrb3V0IGFuZCB5b3UnbGwgYmUgaW4gYnVzaW5lc3MuIChOb3QgdmFsaWQgd2l0
+aCBvdGhlciBwcm9tb3Rpb25zLCBhbmQgb3RoZXIgY29uZGl0aW9ucyBtYXkgYXBwbHkuKTwvcD4N
+Cg0KCQkJCQk8cD5XZSdyZSBwcm91ZCB0byBoYXZlIHRoZSBtb3N0IGRpdmVyc2UsIGtub3dsZWRn
+ZWFibGUgYW5kIHBhc3Npb25hdGUgdHJhdmVsZXIgY29tbXVuaXR5IG9uIHRoZSBwbGFuZXQgJiM4
+MjEyOyB0aGFuayB5b3UgZm9yIGJlaW5nIGEgcGFydCBvZiBpdCE8L3A+DQoNCgkJCQkJPHA+VGhl
+IExvbmVseSBQbGFuZXQgdGVhbTwvcD4NCg0KCQkJCQlQLlMuIElmIHlvdSB3YW50IHRvIGdldCBp
+biB0b3VjaCB3aXRoIHRoZSBjb21tdW5pdHkgdGVhbSwgZW1haWwgPGEgaHJlZj0ibWFpbHRvOmNv
+bW11bml0eUBsb25lbHlwbGFuZXQuY29tIj5jb21tdW5pdHlAbG9uZWx5cGxhbmV0LmNvbTwvYT4N
+CiAgICAgICAgICAgICAgICA8L3RkPg0KICAgICAgICAgICAgPC90cj4NCiAgICAgICAgICAgIDx0
+cj4NCiAgICAgICAgICAgICAgICA8dGQgc3R5bGU9ImZvbnQtZmFtaWx5OiBWZXJkYW5hLCBBcmlh
+bCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyAgZm9udC1zaXplOjEycHg7IHBhZGRpbmctbGVmdDoy
+MHB4OyBjb2xvcjojMzMzOyBsaW5lLWhlaWdodDogMS4zZW07Ij4NCiAgICAgICAgICAgICAgICAg
+ICAgPHAgc3R5bGU9ImJvcmRlci10b3A6MXB4ICNkZmRlZGIgc29saWQ7IHBhZGRpbmctdG9wOjEw
+cHgiPlRleHQgJmFtcDsgSW1hZ2VzICZjb3B5OyBMb25lbHkgUGxhbmV0IDIwMTE8L3A+DQogICAg
+ICAgICAgICAgICAgICAgIDxwPlRoaXMgZW1haWwsIGluY2x1ZGluZyBhdHRhY2htZW50cywgaXMg
+aW50ZW5kZWQgb25seSBmb3IgdGhlIGFkZHJlc3NlZSBhbmQgbWF5IGJlIGNvbmZpZGVudGlhbCwg
+cHJpdmlsZWdlZCBhbmQgc3ViamVjdCB0byBjb3B5cmlnaHQuIElmIHlvdSBoYXZlIHJlY2VpdmVk
+IHRoaXMgZW1haWwgaW4gZXJyb3IsIHBsZWFzZSBhZHZpc2UgdGhlIHNlbmRlciBhbmQgZGVsZXRl
+IGl0LiBJZiB5b3UgYXJlIG5vdCB0aGUgaW50ZW5kZWQgcmVjaXBpZW50IG9mIHRoaXMgZW1haWws
+IHlvdSBtdXN0IG5vdCBjb21tdW5pY2F0ZSB0byBvdGhlcnMgY29udGVudCB0aGF0IGlzIGNvbmZp
+ZGVudGlhbCBvciBzdWJqZWN0IHRvIGNvcHlyaWdodCwgdW5sZXNzIHlvdSBoYXZlIHRoZSBjb25z
+ZW50IG9mIHRoZSBjb250ZW50IG93bmVyLjwvcD4NCiAgICAgICAgICAgICAgICA8L3RkPg0KICAg
+ICAgICAgICAgPC90cj4NCiAgICAgICAgPC90YWJsZT4NCiAgICA8L2JvZHk+DQo8L2h0bWw+DQo=
+
+--_000_4e1f79598aac0508010ee224app01groupsdevintlpotmail_--
 END_OF_MESSAGE
 
 Net::SMTP.start('localhost', 2525) do |smtp|
-  smtp.send_message(message,'francis@example.com','bill@example.com')
+  smtp.send_message(message1,"francis@example.com","bill@example.com")
+end
+
+Net::SMTP.start('localhost', 2525) do |smtp|
+  smtp.send_message(message2,"registration@lonelyplanet.com.au","madlep0715@devint.lpo")
 end

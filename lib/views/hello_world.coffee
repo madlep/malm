@@ -1,0 +1,2 @@
+doStuff = () ->
+  alert("Hello world")
