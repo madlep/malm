@@ -8,6 +8,7 @@ gem "mail", "2.3.0"
 gem "therubyracer", "0.9.2"
 gem "execjs", "1.2.0"
 gem "coffee-script", "2.2.0"
+gem "daemons", "1.1.4"
 
 group :development do
   gem "rspec", "~> 2.3.0"

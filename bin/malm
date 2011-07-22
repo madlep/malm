@@ -2,21 +2,46 @@
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), "..", "lib"))
 require 'malm'
 require 'clamp'
+require 'daemons'
 
 class MalmCommand < Clamp::Command
+  option "--start", :flag, "Start malm as a daemon process"
+  option "--stop", :flag, "Stop malm running as a daemon process"
+  option "--restart", :flag, "Restart malm running as a daemon process"
+  option "--piddir", "PID DIRECTORY", "Where to put pids", :default => "/var/run"
   option ["-l", "--log"], "FILE", "file to log mail messages to (optional)"
-
   option ["-p", "--smtpport"], "SMTP PORT", "SMTP port to listen on", :default => 2525 do |port|
     Integer(port)
   end
-  
   option ["-w", "--webport"], "WEB PORT", "Port for client web app to view malmed messages", :default => 4567 do |port|
     Integer(port)
   end
   
-  def execute
-    malm = Malm.new(:log => log, :smtpport => smtpport, :webport => webport)
-    malm.run!
+  def execute    
+    malm_proc = proc{
+      malm = Malm.new(:log => log, :smtpport => smtpport, :webport => webport)
+      malm.run!      
+    }
+    
+    if start? || stop? || restart?
+      mode = nil
+      mode ||= start? ? "start" : nil
+      mode ||= stop? ? "stop" : nil
+      mode ||= restart? ? "restart" : nil
+
+      daemon_options = {
+        :ARGV => [mode],
+        :dir_mode => :normal,
+        :dir => piddir,
+        :multiple => true,
+        :monitor => true,
+        :app_name => "malm-#{smtpport}-#{webport}"
+      }
+      
+      Daemons.run_proc("malm-#{smtpport}-#{webport}", daemon_options, &malm_proc)
+    else
+      malm_proc.call
+    end
   end
 end
 MalmCommand.run
