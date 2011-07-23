@@ -22,7 +22,7 @@ If you want to start up on regular SMTP port 25, you'll probably need to run it 
 
 For more info try
 
-    sudo malm --help
+    malm --help
 
 Viewing Messages
 ----------------
