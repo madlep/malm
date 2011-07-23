@@ -5,8 +5,8 @@ require 'clamp'
 require 'daemons'
 
 class MalmCommand < Clamp::Command
-  option "--start", :flag, "Start malm as a daemon process"
-  option "--stop", :flag, "Stop malm running as a daemon process"
+  option "--start", :flag, "Start malm as a daemon process. PID will be written to '<PID DIRECTORY>/malm-<SMTP PORT>-<WEB PORT>.pid'"
+  option "--stop", :flag, "Stop malm running as a daemon process. Process id '<PID DIRECTORY>/malm-<SMTP PORT>-<WEB PORT>.pid' will be stopped"
   option "--restart", :flag, "Restart malm running as a daemon process"
   option "--piddir", "PID DIRECTORY", "Where to put pids", :default => "/var/run"
   option ["-l", "--log"], "FILE", "file to log mail messages to (optional)"
