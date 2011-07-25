@@ -9,8 +9,12 @@ require 'mail'
 class Malm
   class Web < Sinatra::Base
   
-    set :public, File.join(File.dirname(__FILE__), "..", "..", "web", "static")
+    set :public, File.join(File.dirname(__FILE__), "..", "..", "web", "public")
     set :views, File.join(File.dirname(__FILE__), "..", "..", "web", "views")
+  
+    get "/" do
+      erb :'index.html'
+    end
   
     get "/messages.json" do
       content_type :json

@@ -1,2 +1,0 @@
-doStuff = () ->
-  alert("Hello world")
