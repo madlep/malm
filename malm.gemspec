@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{malm}
-  s.version = "0.0.5"
+  s.version = "0.0.6"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["madlep"]
-  s.date = %q{2011-07-23}
+  s.date = %q{2011-07-25}
   s.default_executable = %q{malm}
   s.description = %q{SMTP server with web interface for easy local development. Sets up a little mail server that you can send messages to, and provides a web front end to let you see what your app did.}
   s.email = %q{julian.doherty.ml@gmail.com}
