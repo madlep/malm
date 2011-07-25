@@ -1,9 +1,6 @@
 require 'thin'
 require 'sinatra/base'
 require 'json'
-require 'v8'
-require 'execjs'
-require 'coffee_script'
 require 'mail'
 
 class Malm
@@ -34,12 +31,7 @@ class Malm
     get "/messages/:id/body.:type" do
       render_message(params[:id], params[:type])
     end
-    
-    get "/coffee/:script.coffee" do
-      content_type "text/javascript"
-      coffee params[:script].to_sym
-    end
-  
+      
     private
     def find_message(id)
       id = Integer(id)

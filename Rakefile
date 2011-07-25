@@ -36,4 +36,26 @@ RSpec::Core::RakeTask.new(:rcov) do |spec|
   spec.rcov = true
 end
 
-task :default => :spec
+task :default => [:coffee, :spec]
+
+task :release => ["coffee", "gemspec:release","git:release","gemcutter:release"]
+
+desc "Clean out yucky dev stuff"
+task :clean => "coffee:clean"
+
+desc "compile coffeescript"
+task :coffee  => "coffee:compile"
+
+namespace :coffee do
+  
+  coffee_src_dir = File.join(File.dirname(__FILE__), "web", "src", "coffee")
+  coffee_out_dir = File.join(File.dirname(__FILE__), "web", "public", "js")
+  
+  task :compile do
+    `coffee -o #{coffee_out_dir} #{coffee_src_dir}/*.coffee`
+  end
+  
+  task :clean do
+    `rm #{coffee_out_dir}/*.js`
+  end
+end
