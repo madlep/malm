@@ -21,15 +21,42 @@
       <h1>malm</h1>
     </header>
     <div id="main" role="main">
-      <h2>messages...</h2>
+      <div id="messages">
+        <h2>Messages</h2>
+        <div id="messages_content"></div>
+      </div>
+      <div id="message">
+        <h1>Message</h1>
+        <div id="message_content"><p>Click message to load content...</p></div>
+      </div>
     </div>
     <footer>
       <p>I blame <a href="https://twitter.com/#!/madlep">@madlep</a> for <a href="https://github.com/madlep/malm">malm</a></p>
     </footer>
   </div> <!-- eo #container -->
 
-
   <script src="/js/lib/jquery-1.6.2.min.js"></script>
+  <script src="/js/lib/underscore-min.js"></script>
   <script src="/js/lib/backbone-min.js"></script>
+  <script src="/js/lib/handlebars.1.0.0.beta.3.js"></script>
+  <script src="/js/message.js"></script>
+  <script src="/js/messages.js"></script>
+  <script src="/js/messages_view.js"></script>
+  <script src="/js/main.js"></script>
+  
+  <script type="text/x-handlebars-template" id="messages_template">
+    {{#each messages}}
+      <div class="messages_item">
+        <p>{{this.subject}}</p>
+      </div>
+    {{/each}}
+  </script>
+  
+  <script type="text/javascript">
+    $(function(){
+      malm_init($("#messages_content"));
+    });
+  </script>
+  
 </body>
 </html>

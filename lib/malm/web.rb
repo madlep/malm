@@ -13,7 +13,7 @@ class Malm
       erb :'index.html'
     end
   
-    get "/messages.json" do
+    get "/messages" do
       content_type :json
       settings.message_db.find_all.map{|m|
         m = m.dup
@@ -23,7 +23,7 @@ class Malm
       }.to_json
     end
   
-    get "/messages/:id.json" do
+    get "/messages/:id" do
       content_type :json
       find_message(params[:id]).to_json
     end

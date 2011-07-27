@@ -81,7 +81,24 @@ a:hover { color: #036; }
  * Author: 
  */
 
+/* list/content layout shamelessly stolen from http://documentcloud.github.com/backbone/ */
+#messages { 
+  position: fixed; top: 0; left: 0; bottom: 0; width: 200px;
+  background: white;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 15px 0 30px 30px;
+  border-right: 1px solid #DDD;
+  box-shadow: 0 0 20px #CCC;
+  -webkit-box-shadow: 0 0 20px #CCC;
+  -moz-box-shadow: 0 0 20px #CCC;
+}
 
+#message {
+  position: relative;
+  width: 550px;
+  margin: 40px 0 50px 260px;
+}
 
 
 
