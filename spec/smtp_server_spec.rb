@@ -24,10 +24,8 @@ describe Malm::SMTPServer do
       )
       
       @io.should_receive(:print).with("220 hello\r\n").ordered
-      @io.should_receive(:print).with("250 and..?\r\n").ordered      
-      @io.should_receive(:print).with("250 OK\r\n").exactly(4).times.ordered
+      @io.should_receive(:print).with("250 OK\r\n").exactly(5).times.ordered
       @io.should_receive(:print).with("354 Enter message, ending with \".\" on a line by itself\r\n").ordered
-      @io.should_receive(:print).with("").exactly(3).times.ordered
       @io.should_receive(:print).with("221 bye\r\n").ordered
       @io.should_receive(:close).ordered
       

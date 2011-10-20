@@ -9,13 +9,12 @@ class Malm
     
     def serve(io)
       message = Message.new
-      log "Connected"
-      io.print "220 hello\r\n"
+      io.print message.process_line[:output]
       loop do
         data = io.gets
-        ok, op = message.process_line(data)
-        io.print op               
-        break unless ok
+        response = message.process_line(data)
+        io.print response[:output] if response[:output]
+        break if response[:done]
         break if io.closed?
       end
       begin
