@@ -28,10 +28,8 @@ class Message
   
   def headers_state(line)
     if (line =~ /^DATA/)
-      return {:output => "354 Enter message, ending with \".\" on a line by itself\r\n", :state => :data_state}
-    end
-    
-    if (line =~ /^(HELO|EHLO)/)
+      {:output => "354 Enter message, ending with \".\" on a line by itself\r\n", :state => :data_state}
+    elsif (line =~ /^(HELO|EHLO)/)
       ok!
     elsif (line =~ /^MAIL FROM\:/)
       @mail_from = (/^MAIL FROM\:<(.+)>.*$/).match(line)[1]
