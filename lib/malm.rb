@@ -1,3 +1,4 @@
+require 'malm/message'
 require 'malm/message_db'
 require 'malm/smtp_server'
 require 'malm/web'

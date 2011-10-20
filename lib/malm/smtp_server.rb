@@ -6,19 +6,7 @@ class Malm
   
     attr_accessor :mail_log
     attr_accessor :message_db
-  
-    class Message
-      attr_accessor :data_mode, :data_mode, :email_body, :mail_from, :rcpt_to, :subject
-      alias :data_mode? :data_mode
     
-      def initialize
-        @data_mode = false
-        @email_body = ""
-        @rcpt_to = []
-      end
-        
-    end
-  
     def serve(io)
       message = Message.new
       log "Connected"
