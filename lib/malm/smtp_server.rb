@@ -13,9 +13,7 @@ class Malm
       io.print "220 hello\r\n"
       loop do
         data = io.gets
-        log ">>" + data
-        ok, op = process_line(data, message)
-        log "<<" + op 
+        ok, op = message.process_line(data)
         io.print op               
         break unless ok
         break if io.closed?
@@ -26,31 +24,6 @@ class Malm
       rescue => e
         log "something screwed up..."
         log e.backtrace
-      end
-    end
-
-    def process_line(line, message)
-      if (message.data_mode?) && (line.chomp =~ /^\.$/)
-        message.data_mode = false
-        return true, "250 OK\r\n"
-      elsif message.data_mode?
-        message.email_body += line
-        return true, ""
-      elsif (line =~ /^(HELO|EHLO)/)
-        return true, "250 and..?\r\n"
-      elsif (line =~ /^QUIT/)
-        return false, "221 bye\r\n"
-      elsif (line =~ /^MAIL FROM\:/)
-        message.mail_from = (/^MAIL FROM\:<(.+)>.*$/).match(line)[1]
-        return true, "250 OK\r\n"
-      elsif (line =~ /^RCPT TO\:/)
-        message.rcpt_to << (/^RCPT TO\:<(.+)>.*$/).match(line)[1]
-        return true, "250 OK\r\n"
-      elsif (line =~ /^DATA/)
-        message.data_mode = true
-        return true, "354 Enter message, ending with \".\" on a line by itself\r\n"
-      else
-        return true, "500 ERROR\r\n"
       end
     end
   
@@ -65,8 +38,6 @@ class Malm
     
       @mail_log_fd.puts(message_data.inspect) if @mail_log_fd
       @message_db.create(message_data) if @message_db
-    
-      log("Message received: #{message_data.inspect}")
     end
   
     protected
