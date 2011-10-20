@@ -1,5 +1,5 @@
 class Message
-  attr_accessor :email_body, :mail_from, :rcpt_to, :subject
+  attr_accessor :email_body, :mail_from, :rcpt_to
 
   def initialize
     @email_body = ""
@@ -11,6 +11,14 @@ class Message
     response = (line =~ /^QUIT/) ? quit! : send(@state, line)
     @state = response.delete(:state)
     response
+  end
+  
+  def subject
+    subject_regex = /^Subject\: (.+)$/
+
+    subject_match = subject_regex.match(@email_body)
+    subj = subject_match ? subject_match[1] : ""
+    subj.strip!
   end
   
   private
