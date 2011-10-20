@@ -9,7 +9,7 @@ class Message
   
   def process_line(line=nil)    
     response = (line =~ /^QUIT/) ? quit! : send(@state, line)
-    @state = response.delete(:state)
+    @state = response.delete(:state) if response[:state]
     response
   end
   
@@ -23,22 +23,22 @@ class Message
   
   private
   def hello_state(_ignore)
-    {:output => "220 hello\r\n", :state => :headers_state, :done => false}
+    {:output => "220 hello\r\n", :state => :headers_state}
   end
   
   def headers_state(line)
     if (line =~ /^DATA/)
-      return {:output => "354 Enter message, ending with \".\" on a line by itself\r\n", :state => :data_state, :done => false}
+      return {:output => "354 Enter message, ending with \".\" on a line by itself\r\n", :state => :data_state}
     end
     
     if (line =~ /^(HELO|EHLO)/)
-      ok!(:headers_state)
+      ok!
     elsif (line =~ /^MAIL FROM\:/)
       @mail_from = (/^MAIL FROM\:<(.+)>.*$/).match(line)[1]
-      ok!(:headers_state)
+      ok!
     elsif (line =~ /^RCPT TO\:/)
       @rcpt_to << (/^RCPT TO\:<(.+)>.*$/).match(line)[1]
-      ok!(:headers_state)
+      ok!
     else
       error!
     end
@@ -49,7 +49,7 @@ class Message
       ok!(:quit_state)
     else
       @email_body << line
-      {:output => nil, :state => :data_state, :done => false}
+      {}
     end
   end
   
@@ -65,8 +65,8 @@ class Message
     {:output => "500 ERROR\r\n", :state => :quit_state, :done => true}
   end
   
-  def ok!(state)
-    {:output => "250 OK\r\n", :state => state, :done => false}
+  def ok!(state=nil)
+    {:output => "250 OK\r\n", :state => state}
   end
     
     
