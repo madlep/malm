@@ -14,6 +14,7 @@ class Malm
       def initialize
         @data_mode = false
         @email_body = ""
+        @rcpt_to = []
       end
         
     end
@@ -55,7 +56,7 @@ class Malm
         message.mail_from = (/^MAIL FROM\:<(.+)>.*$/).match(line)[1]
         return true, "250 OK\r\n"
       elsif (line =~ /^RCPT TO\:/)
-        message.rcpt_to = (/^RCPT TO\:<(.+)>.*$/).match(line)[1]
+        message.rcpt_to << (/^RCPT TO\:<(.+)>.*$/).match(line)[1]
         return true, "250 OK\r\n"
       elsif (line =~ /^DATA/)
         message.data_mode = true
