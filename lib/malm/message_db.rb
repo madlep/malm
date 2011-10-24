@@ -1,6 +1,6 @@
 require 'thread'
 
-class Malm
+module Malm
   class MessageDb
   
     def initialize

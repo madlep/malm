@@ -19,7 +19,7 @@ class MalmCommand < Clamp::Command
   
   def execute    
     malm_proc = proc{
-      malm = Malm.new(:log => log, :smtpport => smtpport, :webport => webport)
+      malm = Malm::Main.new(:log => log, :smtpport => smtpport, :webport => webport)
       malm.run!      
     }
     

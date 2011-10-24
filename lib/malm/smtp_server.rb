@@ -1,7 +1,7 @@
 # based on copy + paste from http://snippets.dzone.com/posts/show/5152
 require 'gserver'
 
-class Malm
+module Malm
   class SMTPServer < GServer
   
     attr_accessor :mail_log

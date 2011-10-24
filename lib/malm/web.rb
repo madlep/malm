@@ -3,7 +3,7 @@ require 'sinatra/base'
 require 'json'
 require 'mail'
 
-class Malm
+module Malm
   class Web < Sinatra::Base
   
     set :public, File.join(File.dirname(__FILE__), "..", "..", "web", "public")
