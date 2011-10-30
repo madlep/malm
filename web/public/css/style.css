@@ -96,8 +96,10 @@ a:hover { color: #036; }
 
 #message {
   position: relative;
-  width: 550px;
+  width: 700px;
   margin: 40px 0 50px 260px;
+  overflow-x: visible;
+  overflow-y: visible;
 }
 
 
