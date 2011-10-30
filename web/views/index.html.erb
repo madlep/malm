@@ -13,6 +13,16 @@
 
     <link rel="stylesheet" href="css/style.css?v=2">
 
+    <script type="text/html" id="messageViewTemplate">
+      <p><a href="javascript: void(0)">{{message.subject}}</a></p>
+    </script>
+    
+    <script type="text/html" id="messageBodyTemplate">
+      <span>Subject:</span> <span>{{message.subject}}</p>
+      <iframe src="{{message.body_urls.html}}" style="width:100%;height:100%"/>
+    </script>
+    
+
   </head>
 
   <body>
@@ -25,11 +35,11 @@
       <div id="main" role="main">
         <div id="messages">
           <h2>Messages</h2>
-          <div id="messages_content"></div>
+          <div id="messagesContent"></div>
         </div>
         <div id="message">
           <h1>Message</h1>
-          <div id="message_content"><p>Click message to load content...</p></div>
+          <div id="messageBody"><p>Click message to load content...</p></div>
         </div>
       </div>
       
@@ -41,25 +51,13 @@
     <script src="/js/lib/jquery-1.6.2.min.js"></script>
     <script src="/js/lib/underscore-min.js"></script>
     <script src="/js/lib/backbone-min.js"></script>
-    <script src="/js/lib/handlebars.1.0.0.beta.3.js"></script>
-    <script src="/js/message.js"></script>
-    <script src="/js/messages.js"></script>
-    <script src="/js/messages_view.js"></script>
-    <script src="/js/main.js"></script>
-  
-  
-    <script type="text/x-handlebars-template" id="messages_template">
-      {{#each messages}}
-        <div class="messages_item">
-          <p><a href="#/messages/{{this.id}}/body.html">{{this.subject}}</a></p>
-        </div>
-      {{/each}}
-    </script>
-  
+
+    <script src="/js/malm.js"></script>
+    
   
     <script type="text/javascript">
       $(function(){
-        malm_init($("#messages_content"));
+        Malm.start();
       });
     </script>
   
