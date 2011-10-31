@@ -49,7 +49,8 @@ module Malm
     
       msg_obj = find_message(id)
       if msg_obj
-        Mail::Message.new(msg_obj[:body]).send("#{type}_part".to_sym).body.to_s
+        content_type_body = Mail::Message.new(msg_obj[:body]).send("#{type}_part".to_sym)
+        content_type_body ? content_type_body.body.to_s : msg_obj[:body]
       else
         status 404
         "don't know about message #{id}"

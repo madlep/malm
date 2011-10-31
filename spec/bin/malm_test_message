@@ -205,10 +205,40 @@ ICAgICAgICAgPC90cj4NCiAgICAgICAgPC90YWJsZT4NCiAgICA8L2JvZHk+DQo8L2h0bWw+DQo=
 --_000_4e1f79598aac0508010ee224app01groupsdevintlpotmail_--
 END_OF_MESSAGE
 
+message3 = <<-END_OF_MESSAGE
+Delivered-To: julian.doherty.ml@gmail.com
+Received: by 10.205.65.11 with SMTP id xk11cs235015bkb;
+        Fri, 8 Jul 2011 04:13:29 -0700 (PDT)
+Received: by 10.236.180.38 with SMTP id i26mr2405055yhm.205.1310123608196;
+        Fri, 08 Jul 2011 04:13:28 -0700 (PDT)
+Return-Path: <qybsao@galeriestills.nl>
+Received: from kiver.site5.com (kiver.site5.com [174.132.150.130])
+        by mx.google.com with ESMTPS id g63si36654835yhn.48.2011.07.08.04.13.26
+        (version=TLSv1/SSLv3 cipher=OTHER);
+        Fri, 08 Jul 2011 04:13:26 -0700 (PDT)
+Received-SPF: neutral (google.com: 174.132.150.130 is neither permitted nor denied by best guess record for domain of qybsao@galeriestills.nl) client-ip=174.132.150.130;
+Authentication-Results: mx.google.com; spf=neutral (google.com: 174.132.150.130 is neither permitted nor denied by best guess record for domain of qybsao@galeriestills.nl) smtp.mail=qybsao@galeriestills.nl
+Received: from akf90.internetdsl.tpnet.pl ([83.17.9.90] helo=galeriestills.nl)
+	by kiver.site5.com with esmtp (Exim 4.69)
+	(envelope-from <qybsao@galeriestills.nl>)
+	id 1Qf8zt-0007aO-I9
+	for madlep@ubercharged.net; Fri, 08 Jul 2011 06:13:26 -0500
+Message-ID: <2ac901cc3d5f$2983c8b0$3b29bc19@galeriestills.nl>
+From: "Precision Crafted and Low Priced Watches" <qybsao@galeriestills.nl>
+To: <madlep@ubercharged.net>
+Subject: No fancy HTML...
+Date: Fri, 8 Jul 2011 13:11:17 +0200
+Yeah, I just got plain text sorry.
+END_OF_MESSAGE
+
 Net::SMTP.start('localhost', 2525) do |smtp|
   smtp.send_message(message1,"francis@example.com","bill@example.com")
 end
 
 Net::SMTP.start('localhost', 2525) do |smtp|
   smtp.send_message(message2,"registration@lonelyplanet.com.au","madlep0715@devint.lpo")
+end
+
+Net::SMTP.start('localhost', 2525) do |smtp|
+  smtp.send_message(message3,"boring@example.com","unimpressed@example.com")
 end
