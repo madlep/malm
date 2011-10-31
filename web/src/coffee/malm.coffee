@@ -15,9 +15,7 @@ _.templateSettings = { interpolate : /\{\{(.+?)\}\}/g };
     )
     messageRouter.messageController = messageController
     
-    messageList.fetch("add": true)
-    
-    Backbone.history.start()
+    messageList.fetch("add": true, "success": () -> Backbone.history.start())
 
 class Message extends Backbone.Model
 
@@ -35,7 +33,6 @@ class MessageListView extends Backbone.View
     @collection.bind('add', @renderItem)
     
   renderItem: (message) =>
-    console.log(message.id)
     view = new MessageView("model": message, "messageRouter": @messageRouter)
     $(@el).append(view.el)
 
