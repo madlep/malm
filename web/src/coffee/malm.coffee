@@ -1,5 +1,3 @@
-_.templateSettings = { interpolate : /\{\{(.+?)\}\}/g };
-
 @Malm = {}
 
 @Malm.start = () ->
@@ -14,8 +12,9 @@ _.templateSettings = { interpolate : /\{\{(.+?)\}\}/g };
       "messageBodyView" : messageBodyView
     )
     messageRouter.messageController = messageController
+    messageListView.messageController = messageController
     
-    messageList.fetch("add": true, "success": () -> Backbone.history.start())
+    messageList.fetch("success": () -> Backbone.history.start())
 
 class Message extends Backbone.Model
 
@@ -24,17 +23,28 @@ class MessageList extends Backbone.Collection
   model: Message
   url: "/messages"
 
+  comparator: (message) ->
+    message.id * -1
+
 
 class MessageListView extends Backbone.View
   el: '#messagesContent'
   
+  events:
+    'click .reload a' : 'reload'
+  
   initialize: () ->
     @messageRouter = @options.messageRouter
-    @collection.bind('add', @renderItem)
+    @collection.bind('reset', @resetMessages)
     
-  renderItem: (message) =>
-    view = new MessageView("model": message, "messageRouter": @messageRouter)
-    $(@el).append(view.el)
+  resetMessages: (messages) =>
+    messages.each (message) =>
+      view = new MessageView("model": message, "messageRouter": @messageRouter)
+      $(@el).append(view.el)
+        
+  reload: () ->
+    $(".messagesItem").remove()
+    @messageController.reload()
 
 
 class MessageView extends Backbone.View
@@ -42,45 +52,55 @@ class MessageView extends Backbone.View
   className: 'messagesItem'
   
   events:
-    'click a' : 'showMessage'
+    'click .contentTypeLinks a' : 'showMessage'
     
   initialize: () ->
-    @template = _.template($('#messageViewTemplate').html())
+    @template = $('#messageViewTemplate').html()
     @messageRouter = @options.messageRouter
     @render()
     
   render: () ->
-    html = @template("message": @model.toJSON())
+    html = Mustache.to_html(@template, 
+      "subject": @model.get("subject"),
+      "htmlUrl": @model.get("body_urls").html,
+      "textUrl": @model.get("body_urls").text
+    )
     $(@el).append(html)
     
-  showMessage: () ->
-    @messageRouter.navigate("/messages/#{@model.id}", true)
+  showMessage: (e) ->
+    contentType = e.target.className
+    @messageRouter.navigate("/messages/#{@model.id}/body.#{contentType}", true)
 
 
 class MessageBodyView extends Backbone.View
   el: "#messageBody"
   
   initialize: () ->
-    @template = _.template($('#messageBodyTemplate').html())
+    @template = $('#messageBodyTemplate').html()
+    @contentType = @options.contentType
     
   render: () ->
-    html = @template("message": @model.toJSON())
+    html = Mustache.to_html(@template, "bodyUrl": @model.get("body_urls")[@contentType])
     $(@el).html(html)
 
 class MessageController
   constructor: (options) -> 
     @messageList = options.messageList
   
-  showMessage: (messageId, term) ->
+  showMessage: (messageId, contentType) ->
     message = @messageList.get(messageId)
-    bodyView = new MessageBodyView("model":message)
+    bodyView = new MessageBodyView("model":message, "contentType": contentType)
     bodyView.render()
+    
+  reload: () ->
+    @messageList.reset()
+    @messageList.fetch()
 
 
 class MessageRouter extends Backbone.Router
   routes: {
-    '/messages/:id' : 'showMesage'
+    '/messages/:id/body.:contentType' : 'showMesage'
   }
           
-  showMesage: (messageId, type) ->
-    @messageController.showMessage(messageId, type)
+  showMesage: (messageId, contentType) ->
+    @messageController.showMessage(messageId, contentType)

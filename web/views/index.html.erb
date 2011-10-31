@@ -14,12 +14,22 @@
     <link rel="stylesheet" href="css/style.css?v=2">
 
     <script type="text/html" id="messageViewTemplate">
-      <p><a href="javascript: void(0)">{{message.subject}}</a></p>
+      <p>
+        <div class="subject">{{subject}}</div>
+        <div class="contentTypeLinks">
+          {{#htmlUrl}}
+            <a class="html" href="javascript: void(0)">HTML</a>
+          {{/htmlUrl}}
+          {{#textUrl}}
+            <a class="text" href="javascript: void(0)">plain text</a>
+          {{/textUrl}}          
+        </div>
+      </p>
     </script>
     
     <script type="text/html" id="messageBodyTemplate">
       <span>Subject:</span> <span>{{message.subject}}</p>
-      <iframe src="{{message.body_urls.html}}" style="width:100%;height:100%"/>
+      <iframe src="{{bodyUrl}}" style="width:100%;height:100%"/>
     </script>
     
 
@@ -35,7 +45,10 @@
       <div id="main" role="main">
         <div id="messages">
           <h2>Messages</h2>
-          <div id="messagesContent"></div>
+          <div id="messagesContent">
+            <div class="reload"><a href="javascript: void(0)">Reload</a></div>
+            
+          </div>
         </div>
         <div id="message">
           <h1>Message</h1>
@@ -51,6 +64,7 @@
     <script src="/js/lib/jquery-1.6.2.min.js"></script>
     <script src="/js/lib/underscore-min.js"></script>
     <script src="/js/lib/backbone-min.js"></script>
+    <script src="/js/lib/mustache.js"></script>
 
     <script src="/js/malm.js"></script>
     
