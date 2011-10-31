@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = "malm"
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["madlep"]
@@ -40,9 +40,11 @@ Gem::Specification.new do |s|
     "spec/spec_helper.rb",
     "web/public/css/style.css",
     "web/public/favicon.ico",
-    "web/public/js/.gitignore",
     "web/public/js/lib/backbone-min.js",
     "web/public/js/lib/jquery-1.6.2.min.js",
+    "web/public/js/lib/mustache.js",
+    "web/public/js/lib/underscore-min.js",
+    "web/public/js/malm.js",
     "web/src/coffee/malm.coffee",
     "web/views/index.html.erb"
   ]
